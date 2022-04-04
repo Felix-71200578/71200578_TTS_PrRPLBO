@@ -31,13 +31,13 @@ public class Avatar extends Actor implements IMoveable, IKeyInput{
         this.healthPoint -= damage;
     }
 
-    public void move(float x, float y) {
-        setXpos(getXpos() + x);
-        setYpos(getYpos() + y);
+    public void move(float posX, float negX) {
+        setXpos(getXpos() + posX);
+        setXpos(getXpos() - negX);
     }
 
     public void jump(float value) {
-        System.out.println(this.Name + " is Jumping");
+        setYpos(getYpos() + value);
     }
 
     public void keyPressed(int key) {
@@ -45,15 +45,14 @@ public class Avatar extends Actor implements IMoveable, IKeyInput{
             move(moveSpeed,0);
         }
         else if (key == 1) {
-            int speed = this.moveSpeed * -1;
-            move(speed,0);
+            move(0,moveSpeed);
         }
         else if (key == 2) {
-            move(0,moveSpeed);
+            jump(moveSpeed);
         }
         else if (key == 3) {
             int speed = this.moveSpeed * -1;
-            move(0,speed);
+            jump(speed);
         }
     }
 
